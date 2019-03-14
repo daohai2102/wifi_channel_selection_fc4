@@ -1,0 +1,1703 @@
+Entering main()
+Entering ChannelSwitching::ChannelSwitching()
+Entering ChannelSwitching::prepareData()
+Entering ChannelSwitching::readTopoFromFile()
+Clear old data done
+Open file done
+File opened
+Read nAP done
+Read file done
+File closed
+Leaving ChannelSwitching::readTopoFromFile()
+Entering ChannelSwitching::readCurrentChannelFromFile()
+Clear old data done
+Open file done
+File opened
+File closed
+Leaving ChannelSwitching::readCurrentChannelFromFile()
+Leaving ChannelSwitching::prepareData()
+Leaving ChannelSwitching::ChannelSwitching()
+Entering printCurrentChannel()
+AP 0: 6
+AP 1: 11
+AP 2: 1
+AP 3: 6
+AP 4: 11
+AP 5: 11
+AP 6: 1
+AP 7: 6
+AP 8: 11
+AP 9: 1
+AP 10: 6
+AP 11: 6
+AP 12: 11
+AP 13: 1
+AP 14: 6
+AP 15: 11
+AP 16: 11
+AP 17: 1
+AP 18: 6
+AP 19: 11
+AP 20: 1
+Leaving printCurrentChannel()
+Entering ChannelSwitching::printChannelInfo()
+AP 0:	(11, -1, 0.299776, 0.442323)	(6, -1, 0.430203, 0.598123)	(1, -1, 0.353241, 0.3855)	
+AP 1:	(11, -1, 0.102917, 0.637621)	(6, -1, 0.768786, 0.90755)	(1, -1, 0.136658, 0.741262)	
+AP 2:	(11, -1, 0.268749, 0.305004)	(6, -1, 0.292529, 0.644305)	(1, -1, 0.219899, 0.322472)	
+AP 3:	(11, -1, 0.121892, 0.904784)	(6, -1, 0.470912, 0.746402)	(1, -1, 0.221518, 0.343447)	
+AP 4:	(11, -1, 0.509147, 0.755774)	(6, -1, 0.683762, 0.725047)	(1, -1, 0.200984, 0.642504)	
+AP 5:	(11, -1, 0.327383, 0.513352)	(6, -1, 0.109642, 0.330852)	(1, -1, 0.33084, 0.795429)	
+AP 6:	(11, -1, 0.542297, 0.938658)	(6, -1, 0.468575, 0.53747)	(1, -1, 0.15995, 0.791667)	
+AP 7:	(11, -1, 0.647189, 0.87506)	(6, -1, 0.189408, 0.347246)	(1, -1, 0.367641, 0.789681)	
+AP 8:	(11, -1, 0.362497, 0.478689)	(6, -1, 0.388068, 0.610526)	(1, -1, 0.29174, 0.583667)	
+AP 9:	(11, -1, 0.273989, 0.339367)	(6, -1, 0.451648, 0.883477)	(1, -1, 0.166343, 0.40823)	
+AP 10:	(11, -1, 0.303101, 0.621085)	(6, -1, 0.236812, 0.507371)	(1, -1, 0.560945, 0.62794)	
+AP 11:	(11, -1, 0.198002, 0.549692)	(6, -1, 0.197441, 0.347937)	(1, -1, 0.218272, 0.358976)	
+AP 12:	(11, -1, 0.232939, 0.332555)	(6, -1, 0.567735, 0.60189)	(1, -1, 0.466911, 0.893981)	
+AP 13:	(11, -1, 0.194183, 0.747496)	(6, -1, 0.22135, 0.381487)	(1, -1, 0.299867, 0.800633)	
+AP 14:	(11, -1, 0.161743, 0.877572)	(6, -1, 0.514492, 0.771518)	(1, -1, 0.290358, 0.709203)	
+AP 15:	(11, -1, 0.190867, 0.849888)	(6, -1, 0.606511, 0.633628)	(1, -1, 0.473719, 0.499109)	
+AP 16:	(11, -1, 0.58584, 0.604146)	(6, -1, 0.116854, 0.570006)	(1, -1, 0.46339, 0.846982)	
+AP 17:	(11, -1, 0.17205, 0.321485)	(6, -1, 0.342305, 0.671576)	(1, -1, 0.10438, 0.415913)	
+AP 18:	(11, -1, 0.79295, 0.878979)	(6, -1, 0.663083, 0.78639)	(1, -1, 0.477216, 0.624012)	
+AP 19:	(11, -1, 0.196367, 0.384778)	(6, -1, 0.11204, 0.438288)	(1, -1, 0.40867, 0.847326)	
+AP 20:	(11, -1, 0.545926, 0.761383)	(6, -1, 0.52644, 0.569291)	(1, -1, 0.152951, 0.478482)	
+Leaving ChannelSwitching::printChannelInfo()
+Entering fc4()
+unmask and clear unsupportedSet for all channel
+initialize unsupportedSet of all channels
+Entering nodeConsistency()
+remove value 6 from var 1
+remove value 6 from var 4
+remove value 11 from var 6
+remove value 6 from var 6
+remove value 6 from var 15
+remove value 1 from var 15
+remove value 11 from var 18
+Leaving nodeConsistency()
+Entering searchFC4() at level 1
+selected var 20
+add (Vi,vi)=(20,11) to the solution
+Entering checkForward4() at level 1 with (20,11)
+unsupportedSet: 
+(14,11): marked
+Entering dwo(14)
+Leaving dwo(14): false
+
+(15,11): marked
+Entering dwo(15)
+Leaving dwo(15): true
+Leaving checkForward4(): false
+remove var 20 from the solution
+Entering restore() at level 1
+restore domain of var 14
+restore domain of var 15
+Leaving restore() at level 1
+add (Vi,vi)=(20,6) to the solution
+Entering checkForward4() at level 1 with (20,6)
+unsupportedSet: 
+(14,6): marked
+Entering dwo(14)
+Leaving dwo(14): false
+
+(15,6): 
+(19,6): marked
+Entering dwo(19)
+Leaving dwo(19): false
+
+Leaving checkForward4(): true
+Entering searchFC4() at level 2
+selected var 19
+add (Vi,vi)=(19,11) to the solution
+Entering checkForward4() at level 2 with (19,11)
+unsupportedSet: 
+(13,11): marked
+Entering dwo(13)
+Leaving dwo(13): false
+
+(14,11): marked
+Entering dwo(14)
+Leaving dwo(14): false
+
+(18,11): 
+(20,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 3
+selected var 18
+add (Vi,vi)=(18,6) to the solution
+Entering checkForward4() at level 3 with (18,6)
+unsupportedSet: 
+(12,6): marked
+Entering dwo(12)
+Leaving dwo(12): false
+
+(13,6): marked
+Entering dwo(13)
+Leaving dwo(13): false
+
+(17,6): marked
+Entering dwo(17)
+Leaving dwo(17): false
+
+(19,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 4
+selected var 17
+add (Vi,vi)=(17,11) to the solution
+Entering checkForward4() at level 4 with (17,11)
+unsupportedSet: 
+(11,11): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(12,11): marked
+Entering dwo(12)
+Leaving dwo(12): false
+
+(16,11): marked
+Entering dwo(16)
+Leaving dwo(16): false
+
+(18,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 5
+selected var 16
+add (Vi,vi)=(16,6) to the solution
+Entering checkForward4() at level 5 with (16,6)
+unsupportedSet: 
+(11,6): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(17,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 6
+selected var 15
+add (Vi,vi)=(15,11) to the solution
+Entering checkForward4() at level 6 with (15,11)
+unsupportedSet: 
+(9,11): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(10,11): marked
+Entering dwo(10)
+Leaving dwo(10): false
+
+(14,11): 
+(20,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 7
+selected var 14
+add (Vi,vi)=(14,1) to the solution
+Entering checkForward4() at level 7 with (14,1)
+unsupportedSet: 
+(8,1): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(9,1): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(13,1): marked
+Entering dwo(13)
+Leaving dwo(13): true
+Leaving checkForward4(): false
+remove var 14 from the solution
+Entering restore() at level 7
+restore domain of var 8
+restore domain of var 9
+restore domain of var 13
+Leaving restore() at level 7
+Leaving searchFC4() at level 7: false
+remove var 15 from the solution
+Entering restore() at level 6
+restore domain of var 9
+restore domain of var 10
+Leaving restore() at level 6
+Leaving searchFC4() at level 6: false
+remove var 16 from the solution
+Entering restore() at level 5
+restore domain of var 11
+Leaving restore() at level 5
+add (Vi,vi)=(16,1) to the solution
+Entering checkForward4() at level 5 with (16,1)
+unsupportedSet: 
+(11,1): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(17,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 6
+selected var 15
+add (Vi,vi)=(15,11) to the solution
+Entering checkForward4() at level 6 with (15,11)
+unsupportedSet: 
+(9,11): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(10,11): marked
+Entering dwo(10)
+Leaving dwo(10): false
+
+(14,11): 
+(20,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 7
+selected var 14
+add (Vi,vi)=(14,1) to the solution
+Entering checkForward4() at level 7 with (14,1)
+unsupportedSet: 
+(8,1): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(9,1): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(13,1): marked
+Entering dwo(13)
+Leaving dwo(13): true
+Leaving checkForward4(): false
+remove var 14 from the solution
+Entering restore() at level 7
+restore domain of var 8
+restore domain of var 9
+restore domain of var 13
+Leaving restore() at level 7
+Leaving searchFC4() at level 7: false
+remove var 15 from the solution
+Entering restore() at level 6
+restore domain of var 9
+restore domain of var 10
+Leaving restore() at level 6
+Leaving searchFC4() at level 6: false
+remove var 16 from the solution
+Entering restore() at level 5
+restore domain of var 11
+Leaving restore() at level 5
+Leaving searchFC4() at level 5: false
+remove var 17 from the solution
+Entering restore() at level 4
+restore domain of var 11
+restore domain of var 12
+restore domain of var 16
+Leaving restore() at level 4
+add (Vi,vi)=(17,1) to the solution
+Entering checkForward4() at level 4 with (17,1)
+unsupportedSet: 
+(11,1): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(12,1): marked
+Entering dwo(12)
+Leaving dwo(12): false
+
+(16,1): marked
+Entering dwo(16)
+Leaving dwo(16): false
+
+(18,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 5
+selected var 16
+add (Vi,vi)=(16,11) to the solution
+Entering checkForward4() at level 5 with (16,11)
+unsupportedSet: 
+(11,11): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(17,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 6
+selected var 15
+add (Vi,vi)=(15,11) to the solution
+Entering checkForward4() at level 6 with (15,11)
+unsupportedSet: 
+(9,11): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(10,11): marked
+Entering dwo(10)
+Leaving dwo(10): false
+
+(14,11): 
+(20,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 7
+selected var 14
+add (Vi,vi)=(14,1) to the solution
+Entering checkForward4() at level 7 with (14,1)
+unsupportedSet: 
+(8,1): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(9,1): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(13,1): marked
+Entering dwo(13)
+Leaving dwo(13): true
+Leaving checkForward4(): false
+remove var 14 from the solution
+Entering restore() at level 7
+restore domain of var 8
+restore domain of var 9
+restore domain of var 13
+Leaving restore() at level 7
+Leaving searchFC4() at level 7: false
+remove var 15 from the solution
+Entering restore() at level 6
+restore domain of var 9
+restore domain of var 10
+Leaving restore() at level 6
+Leaving searchFC4() at level 6: false
+remove var 16 from the solution
+Entering restore() at level 5
+restore domain of var 11
+Leaving restore() at level 5
+add (Vi,vi)=(16,6) to the solution
+Entering checkForward4() at level 5 with (16,6)
+unsupportedSet: 
+(11,6): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(17,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 6
+selected var 15
+add (Vi,vi)=(15,11) to the solution
+Entering checkForward4() at level 6 with (15,11)
+unsupportedSet: 
+(9,11): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(10,11): marked
+Entering dwo(10)
+Leaving dwo(10): false
+
+(14,11): 
+(20,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 7
+selected var 14
+add (Vi,vi)=(14,1) to the solution
+Entering checkForward4() at level 7 with (14,1)
+unsupportedSet: 
+(8,1): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(9,1): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(13,1): marked
+Entering dwo(13)
+Leaving dwo(13): true
+Leaving checkForward4(): false
+remove var 14 from the solution
+Entering restore() at level 7
+restore domain of var 8
+restore domain of var 9
+restore domain of var 13
+Leaving restore() at level 7
+Leaving searchFC4() at level 7: false
+remove var 15 from the solution
+Entering restore() at level 6
+restore domain of var 9
+restore domain of var 10
+Leaving restore() at level 6
+Leaving searchFC4() at level 6: false
+remove var 16 from the solution
+Entering restore() at level 5
+restore domain of var 11
+Leaving restore() at level 5
+Leaving searchFC4() at level 5: false
+remove var 17 from the solution
+Entering restore() at level 4
+restore domain of var 11
+restore domain of var 12
+restore domain of var 16
+Leaving restore() at level 4
+Leaving searchFC4() at level 4: false
+remove var 18 from the solution
+Entering restore() at level 3
+restore domain of var 12
+restore domain of var 13
+restore domain of var 17
+Leaving restore() at level 3
+add (Vi,vi)=(18,1) to the solution
+Entering checkForward4() at level 3 with (18,1)
+unsupportedSet: 
+(12,1): marked
+Entering dwo(12)
+Leaving dwo(12): false
+
+(13,1): marked
+Entering dwo(13)
+Leaving dwo(13): false
+
+(17,1): marked
+Entering dwo(17)
+Leaving dwo(17): false
+
+(19,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 4
+selected var 17
+add (Vi,vi)=(17,11) to the solution
+Entering checkForward4() at level 4 with (17,11)
+unsupportedSet: 
+(11,11): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(12,11): marked
+Entering dwo(12)
+Leaving dwo(12): false
+
+(16,11): marked
+Entering dwo(16)
+Leaving dwo(16): false
+
+(18,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 5
+selected var 16
+add (Vi,vi)=(16,6) to the solution
+Entering checkForward4() at level 5 with (16,6)
+unsupportedSet: 
+(11,6): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(17,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 6
+selected var 15
+add (Vi,vi)=(15,11) to the solution
+Entering checkForward4() at level 6 with (15,11)
+unsupportedSet: 
+(9,11): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(10,11): marked
+Entering dwo(10)
+Leaving dwo(10): false
+
+(14,11): 
+(20,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 7
+selected var 14
+add (Vi,vi)=(14,1) to the solution
+Entering checkForward4() at level 7 with (14,1)
+unsupportedSet: 
+(8,1): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(9,1): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(13,1): 
+(15,1): 
+(19,1): 
+(20,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 8
+selected var 13
+add (Vi,vi)=(13,6) to the solution
+Entering checkForward4() at level 8 with (13,6)
+unsupportedSet: 
+(7,6): marked
+Entering dwo(7)
+Leaving dwo(7): false
+
+(8,6): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(12,6): marked
+Entering dwo(12)
+Leaving dwo(12): true
+Leaving checkForward4(): false
+remove var 13 from the solution
+Entering restore() at level 8
+restore domain of var 7
+restore domain of var 8
+restore domain of var 12
+Leaving restore() at level 8
+Leaving searchFC4() at level 8: false
+remove var 14 from the solution
+Entering restore() at level 7
+restore domain of var 8
+restore domain of var 9
+Leaving restore() at level 7
+Leaving searchFC4() at level 7: false
+remove var 15 from the solution
+Entering restore() at level 6
+restore domain of var 9
+restore domain of var 10
+Leaving restore() at level 6
+Leaving searchFC4() at level 6: false
+remove var 16 from the solution
+Entering restore() at level 5
+restore domain of var 11
+Leaving restore() at level 5
+add (Vi,vi)=(16,1) to the solution
+Entering checkForward4() at level 5 with (16,1)
+unsupportedSet: 
+(11,1): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(17,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 6
+selected var 15
+add (Vi,vi)=(15,11) to the solution
+Entering checkForward4() at level 6 with (15,11)
+unsupportedSet: 
+(9,11): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(10,11): marked
+Entering dwo(10)
+Leaving dwo(10): false
+
+(14,11): 
+(20,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 7
+selected var 14
+add (Vi,vi)=(14,1) to the solution
+Entering checkForward4() at level 7 with (14,1)
+unsupportedSet: 
+(8,1): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(9,1): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(13,1): 
+(15,1): 
+(19,1): 
+(20,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 8
+selected var 13
+add (Vi,vi)=(13,6) to the solution
+Entering checkForward4() at level 8 with (13,6)
+unsupportedSet: 
+(7,6): marked
+Entering dwo(7)
+Leaving dwo(7): false
+
+(8,6): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(12,6): marked
+Entering dwo(12)
+Leaving dwo(12): true
+Leaving checkForward4(): false
+remove var 13 from the solution
+Entering restore() at level 8
+restore domain of var 7
+restore domain of var 8
+restore domain of var 12
+Leaving restore() at level 8
+Leaving searchFC4() at level 8: false
+remove var 14 from the solution
+Entering restore() at level 7
+restore domain of var 8
+restore domain of var 9
+Leaving restore() at level 7
+Leaving searchFC4() at level 7: false
+remove var 15 from the solution
+Entering restore() at level 6
+restore domain of var 9
+restore domain of var 10
+Leaving restore() at level 6
+Leaving searchFC4() at level 6: false
+remove var 16 from the solution
+Entering restore() at level 5
+restore domain of var 11
+Leaving restore() at level 5
+Leaving searchFC4() at level 5: false
+remove var 17 from the solution
+Entering restore() at level 4
+restore domain of var 11
+restore domain of var 12
+restore domain of var 16
+Leaving restore() at level 4
+add (Vi,vi)=(17,6) to the solution
+Entering checkForward4() at level 4 with (17,6)
+unsupportedSet: 
+(11,6): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(12,6): marked
+Entering dwo(12)
+Leaving dwo(12): false
+
+(16,6): marked
+Entering dwo(16)
+Leaving dwo(16): false
+
+(18,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 5
+selected var 16
+add (Vi,vi)=(16,11) to the solution
+Entering checkForward4() at level 5 with (16,11)
+unsupportedSet: 
+(11,11): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(17,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 6
+selected var 15
+add (Vi,vi)=(15,11) to the solution
+Entering checkForward4() at level 6 with (15,11)
+unsupportedSet: 
+(9,11): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(10,11): marked
+Entering dwo(10)
+Leaving dwo(10): false
+
+(14,11): 
+(20,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 7
+selected var 14
+add (Vi,vi)=(14,1) to the solution
+Entering checkForward4() at level 7 with (14,1)
+unsupportedSet: 
+(8,1): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(9,1): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(13,1): 
+(15,1): 
+(19,1): 
+(20,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 8
+selected var 13
+add (Vi,vi)=(13,6) to the solution
+Entering checkForward4() at level 8 with (13,6)
+unsupportedSet: 
+(7,6): marked
+Entering dwo(7)
+Leaving dwo(7): false
+
+(8,6): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(12,6): 
+(14,6): 
+(18,6): 
+(19,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 9
+selected var 12
+add (Vi,vi)=(12,11) to the solution
+Entering checkForward4() at level 9 with (12,11)
+unsupportedSet: 
+(6,11): 
+(7,11): marked
+Entering dwo(7)
+Leaving dwo(7): false
+
+(11,11): 
+(13,11): 
+(17,11): 
+(18,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 10
+selected var 11
+add (Vi,vi)=(11,1) to the solution
+Entering checkForward4() at level 10 with (11,1)
+unsupportedSet: 
+(5,1): marked
+Entering dwo(5)
+Leaving dwo(5): false
+
+(6,1): marked
+Entering dwo(6)
+Leaving dwo(6): true
+Leaving checkForward4(): false
+remove var 11 from the solution
+Entering restore() at level 10
+restore domain of var 5
+restore domain of var 6
+Leaving restore() at level 10
+Leaving searchFC4() at level 10: false
+remove var 12 from the solution
+Entering restore() at level 9
+restore domain of var 7
+Leaving restore() at level 9
+Leaving searchFC4() at level 9: false
+remove var 13 from the solution
+Entering restore() at level 8
+restore domain of var 7
+restore domain of var 8
+Leaving restore() at level 8
+Leaving searchFC4() at level 8: false
+remove var 14 from the solution
+Entering restore() at level 7
+restore domain of var 8
+restore domain of var 9
+Leaving restore() at level 7
+Leaving searchFC4() at level 7: false
+remove var 15 from the solution
+Entering restore() at level 6
+restore domain of var 9
+restore domain of var 10
+Leaving restore() at level 6
+Leaving searchFC4() at level 6: false
+remove var 16 from the solution
+Entering restore() at level 5
+restore domain of var 11
+Leaving restore() at level 5
+add (Vi,vi)=(16,1) to the solution
+Entering checkForward4() at level 5 with (16,1)
+unsupportedSet: 
+(11,1): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(17,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 6
+selected var 15
+add (Vi,vi)=(15,11) to the solution
+Entering checkForward4() at level 6 with (15,11)
+unsupportedSet: 
+(9,11): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(10,11): marked
+Entering dwo(10)
+Leaving dwo(10): false
+
+(14,11): 
+(20,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 7
+selected var 14
+add (Vi,vi)=(14,1) to the solution
+Entering checkForward4() at level 7 with (14,1)
+unsupportedSet: 
+(8,1): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(9,1): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(13,1): 
+(15,1): 
+(19,1): 
+(20,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 8
+selected var 13
+add (Vi,vi)=(13,6) to the solution
+Entering checkForward4() at level 8 with (13,6)
+unsupportedSet: 
+(7,6): marked
+Entering dwo(7)
+Leaving dwo(7): false
+
+(8,6): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(12,6): 
+(14,6): 
+(18,6): 
+(19,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 9
+selected var 12
+add (Vi,vi)=(12,11) to the solution
+Entering checkForward4() at level 9 with (12,11)
+unsupportedSet: 
+(6,11): 
+(7,11): marked
+Entering dwo(7)
+Leaving dwo(7): false
+
+(11,11): marked
+Entering dwo(11)
+Leaving dwo(11): true
+Leaving checkForward4(): false
+remove var 12 from the solution
+Entering restore() at level 9
+restore domain of var 7
+restore domain of var 11
+Leaving restore() at level 9
+Leaving searchFC4() at level 9: false
+remove var 13 from the solution
+Entering restore() at level 8
+restore domain of var 7
+restore domain of var 8
+Leaving restore() at level 8
+Leaving searchFC4() at level 8: false
+remove var 14 from the solution
+Entering restore() at level 7
+restore domain of var 8
+restore domain of var 9
+Leaving restore() at level 7
+Leaving searchFC4() at level 7: false
+remove var 15 from the solution
+Entering restore() at level 6
+restore domain of var 9
+restore domain of var 10
+Leaving restore() at level 6
+Leaving searchFC4() at level 6: false
+remove var 16 from the solution
+Entering restore() at level 5
+restore domain of var 11
+Leaving restore() at level 5
+Leaving searchFC4() at level 5: false
+remove var 17 from the solution
+Entering restore() at level 4
+restore domain of var 11
+restore domain of var 12
+restore domain of var 16
+Leaving restore() at level 4
+Leaving searchFC4() at level 4: false
+remove var 18 from the solution
+Entering restore() at level 3
+restore domain of var 12
+restore domain of var 13
+restore domain of var 17
+Leaving restore() at level 3
+Leaving searchFC4() at level 3: false
+remove var 19 from the solution
+Entering restore() at level 2
+restore domain of var 13
+restore domain of var 14
+Leaving restore() at level 2
+add (Vi,vi)=(19,1) to the solution
+Entering checkForward4() at level 2 with (19,1)
+unsupportedSet: 
+(13,1): marked
+Entering dwo(13)
+Leaving dwo(13): false
+
+(14,1): marked
+Entering dwo(14)
+Leaving dwo(14): false
+
+(18,1): marked
+Entering dwo(18)
+Leaving dwo(18): false
+
+(20,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 3
+selected var 18
+add (Vi,vi)=(18,6) to the solution
+Entering checkForward4() at level 3 with (18,6)
+unsupportedSet: 
+(12,6): marked
+Entering dwo(12)
+Leaving dwo(12): false
+
+(13,6): marked
+Entering dwo(13)
+Leaving dwo(13): false
+
+(17,6): marked
+Entering dwo(17)
+Leaving dwo(17): false
+
+(19,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 4
+selected var 17
+add (Vi,vi)=(17,11) to the solution
+Entering checkForward4() at level 4 with (17,11)
+unsupportedSet: 
+(11,11): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(12,11): marked
+Entering dwo(12)
+Leaving dwo(12): false
+
+(16,11): marked
+Entering dwo(16)
+Leaving dwo(16): false
+
+(18,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 5
+selected var 16
+add (Vi,vi)=(16,6) to the solution
+Entering checkForward4() at level 5 with (16,6)
+unsupportedSet: 
+(11,6): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(17,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 6
+selected var 15
+add (Vi,vi)=(15,11) to the solution
+Entering checkForward4() at level 6 with (15,11)
+unsupportedSet: 
+(9,11): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(10,11): marked
+Entering dwo(10)
+Leaving dwo(10): false
+
+(14,11): marked
+Entering dwo(14)
+Leaving dwo(14): true
+Leaving checkForward4(): false
+remove var 15 from the solution
+Entering restore() at level 6
+restore domain of var 9
+restore domain of var 10
+restore domain of var 14
+Leaving restore() at level 6
+Leaving searchFC4() at level 6: false
+remove var 16 from the solution
+Entering restore() at level 5
+restore domain of var 11
+Leaving restore() at level 5
+add (Vi,vi)=(16,1) to the solution
+Entering checkForward4() at level 5 with (16,1)
+unsupportedSet: 
+(11,1): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(17,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 6
+selected var 15
+add (Vi,vi)=(15,11) to the solution
+Entering checkForward4() at level 6 with (15,11)
+unsupportedSet: 
+(9,11): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(10,11): marked
+Entering dwo(10)
+Leaving dwo(10): false
+
+(14,11): marked
+Entering dwo(14)
+Leaving dwo(14): true
+Leaving checkForward4(): false
+remove var 15 from the solution
+Entering restore() at level 6
+restore domain of var 9
+restore domain of var 10
+restore domain of var 14
+Leaving restore() at level 6
+Leaving searchFC4() at level 6: false
+remove var 16 from the solution
+Entering restore() at level 5
+restore domain of var 11
+Leaving restore() at level 5
+Leaving searchFC4() at level 5: false
+remove var 17 from the solution
+Entering restore() at level 4
+restore domain of var 11
+restore domain of var 12
+restore domain of var 16
+Leaving restore() at level 4
+add (Vi,vi)=(17,1) to the solution
+Entering checkForward4() at level 4 with (17,1)
+unsupportedSet: 
+(11,1): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(12,1): marked
+Entering dwo(12)
+Leaving dwo(12): false
+
+(16,1): marked
+Entering dwo(16)
+Leaving dwo(16): false
+
+(18,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 5
+selected var 16
+add (Vi,vi)=(16,11) to the solution
+Entering checkForward4() at level 5 with (16,11)
+unsupportedSet: 
+(11,11): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(17,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 6
+selected var 15
+add (Vi,vi)=(15,11) to the solution
+Entering checkForward4() at level 6 with (15,11)
+unsupportedSet: 
+(9,11): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(10,11): marked
+Entering dwo(10)
+Leaving dwo(10): false
+
+(14,11): marked
+Entering dwo(14)
+Leaving dwo(14): true
+Leaving checkForward4(): false
+remove var 15 from the solution
+Entering restore() at level 6
+restore domain of var 9
+restore domain of var 10
+restore domain of var 14
+Leaving restore() at level 6
+Leaving searchFC4() at level 6: false
+remove var 16 from the solution
+Entering restore() at level 5
+restore domain of var 11
+Leaving restore() at level 5
+add (Vi,vi)=(16,6) to the solution
+Entering checkForward4() at level 5 with (16,6)
+unsupportedSet: 
+(11,6): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(17,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 6
+selected var 15
+add (Vi,vi)=(15,11) to the solution
+Entering checkForward4() at level 6 with (15,11)
+unsupportedSet: 
+(9,11): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(10,11): marked
+Entering dwo(10)
+Leaving dwo(10): false
+
+(14,11): marked
+Entering dwo(14)
+Leaving dwo(14): true
+Leaving checkForward4(): false
+remove var 15 from the solution
+Entering restore() at level 6
+restore domain of var 9
+restore domain of var 10
+restore domain of var 14
+Leaving restore() at level 6
+Leaving searchFC4() at level 6: false
+remove var 16 from the solution
+Entering restore() at level 5
+restore domain of var 11
+Leaving restore() at level 5
+Leaving searchFC4() at level 5: false
+remove var 17 from the solution
+Entering restore() at level 4
+restore domain of var 11
+restore domain of var 12
+restore domain of var 16
+Leaving restore() at level 4
+Leaving searchFC4() at level 4: false
+remove var 18 from the solution
+Entering restore() at level 3
+restore domain of var 12
+restore domain of var 13
+restore domain of var 17
+Leaving restore() at level 3
+Leaving searchFC4() at level 3: false
+remove var 19 from the solution
+Entering restore() at level 2
+restore domain of var 13
+restore domain of var 14
+restore domain of var 18
+Leaving restore() at level 2
+Leaving searchFC4() at level 2: false
+remove var 20 from the solution
+Entering restore() at level 1
+restore domain of var 14
+restore domain of var 19
+Leaving restore() at level 1
+add (Vi,vi)=(20,1) to the solution
+Entering checkForward4() at level 1 with (20,1)
+unsupportedSet: 
+(14,1): marked
+Entering dwo(14)
+Leaving dwo(14): false
+
+(15,1): 
+(19,1): marked
+Entering dwo(19)
+Leaving dwo(19): false
+
+Leaving checkForward4(): true
+Entering searchFC4() at level 2
+selected var 19
+add (Vi,vi)=(19,11) to the solution
+Entering checkForward4() at level 2 with (19,11)
+unsupportedSet: 
+(13,11): marked
+Entering dwo(13)
+Leaving dwo(13): false
+
+(14,11): marked
+Entering dwo(14)
+Leaving dwo(14): false
+
+(18,11): 
+(20,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 3
+selected var 18
+add (Vi,vi)=(18,6) to the solution
+Entering checkForward4() at level 3 with (18,6)
+unsupportedSet: 
+(12,6): marked
+Entering dwo(12)
+Leaving dwo(12): false
+
+(13,6): marked
+Entering dwo(13)
+Leaving dwo(13): false
+
+(17,6): marked
+Entering dwo(17)
+Leaving dwo(17): false
+
+(19,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 4
+selected var 17
+add (Vi,vi)=(17,11) to the solution
+Entering checkForward4() at level 4 with (17,11)
+unsupportedSet: 
+(11,11): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(12,11): marked
+Entering dwo(12)
+Leaving dwo(12): false
+
+(16,11): marked
+Entering dwo(16)
+Leaving dwo(16): false
+
+(18,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 5
+selected var 16
+add (Vi,vi)=(16,6) to the solution
+Entering checkForward4() at level 5 with (16,6)
+unsupportedSet: 
+(11,6): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(17,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 6
+selected var 15
+add (Vi,vi)=(15,11) to the solution
+Entering checkForward4() at level 6 with (15,11)
+unsupportedSet: 
+(9,11): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(10,11): marked
+Entering dwo(10)
+Leaving dwo(10): false
+
+(14,11): 
+(20,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 7
+selected var 14
+add (Vi,vi)=(14,6) to the solution
+Entering checkForward4() at level 7 with (14,6)
+unsupportedSet: 
+(8,6): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(9,6): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(13,6): 
+(15,6): 
+(19,6): 
+(20,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 8
+selected var 13
+add (Vi,vi)=(13,1) to the solution
+Entering checkForward4() at level 8 with (13,1)
+unsupportedSet: 
+(7,1): marked
+Entering dwo(7)
+Leaving dwo(7): false
+
+(8,1): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(12,1): marked
+Entering dwo(12)
+Leaving dwo(12): true
+Leaving checkForward4(): false
+remove var 13 from the solution
+Entering restore() at level 8
+restore domain of var 7
+restore domain of var 8
+restore domain of var 12
+Leaving restore() at level 8
+Leaving searchFC4() at level 8: false
+remove var 14 from the solution
+Entering restore() at level 7
+restore domain of var 8
+restore domain of var 9
+Leaving restore() at level 7
+Leaving searchFC4() at level 7: false
+remove var 15 from the solution
+Entering restore() at level 6
+restore domain of var 9
+restore domain of var 10
+Leaving restore() at level 6
+Leaving searchFC4() at level 6: false
+remove var 16 from the solution
+Entering restore() at level 5
+restore domain of var 11
+Leaving restore() at level 5
+add (Vi,vi)=(16,1) to the solution
+Entering checkForward4() at level 5 with (16,1)
+unsupportedSet: 
+(11,1): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(17,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 6
+selected var 15
+add (Vi,vi)=(15,11) to the solution
+Entering checkForward4() at level 6 with (15,11)
+unsupportedSet: 
+(9,11): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(10,11): marked
+Entering dwo(10)
+Leaving dwo(10): false
+
+(14,11): 
+(20,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 7
+selected var 14
+add (Vi,vi)=(14,6) to the solution
+Entering checkForward4() at level 7 with (14,6)
+unsupportedSet: 
+(8,6): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(9,6): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(13,6): 
+(15,6): 
+(19,6): 
+(20,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 8
+selected var 13
+add (Vi,vi)=(13,1) to the solution
+Entering checkForward4() at level 8 with (13,1)
+unsupportedSet: 
+(7,1): marked
+Entering dwo(7)
+Leaving dwo(7): false
+
+(8,1): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(12,1): marked
+Entering dwo(12)
+Leaving dwo(12): true
+Leaving checkForward4(): false
+remove var 13 from the solution
+Entering restore() at level 8
+restore domain of var 7
+restore domain of var 8
+restore domain of var 12
+Leaving restore() at level 8
+Leaving searchFC4() at level 8: false
+remove var 14 from the solution
+Entering restore() at level 7
+restore domain of var 8
+restore domain of var 9
+Leaving restore() at level 7
+Leaving searchFC4() at level 7: false
+remove var 15 from the solution
+Entering restore() at level 6
+restore domain of var 9
+restore domain of var 10
+Leaving restore() at level 6
+Leaving searchFC4() at level 6: false
+remove var 16 from the solution
+Entering restore() at level 5
+restore domain of var 11
+Leaving restore() at level 5
+Leaving searchFC4() at level 5: false
+remove var 17 from the solution
+Entering restore() at level 4
+restore domain of var 11
+restore domain of var 12
+restore domain of var 16
+Leaving restore() at level 4
+add (Vi,vi)=(17,1) to the solution
+Entering checkForward4() at level 4 with (17,1)
+unsupportedSet: 
+(11,1): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(12,1): marked
+Entering dwo(12)
+Leaving dwo(12): false
+
+(16,1): marked
+Entering dwo(16)
+Leaving dwo(16): false
+
+(18,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 5
+selected var 16
+add (Vi,vi)=(16,11) to the solution
+Entering checkForward4() at level 5 with (16,11)
+unsupportedSet: 
+(11,11): marked
+Entering dwo(11)
+Leaving dwo(11): false
+
+(17,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 6
+selected var 15
+add (Vi,vi)=(15,11) to the solution
+Entering checkForward4() at level 6 with (15,11)
+unsupportedSet: 
+(9,11): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(10,11): marked
+Entering dwo(10)
+Leaving dwo(10): false
+
+(14,11): 
+(20,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 7
+selected var 14
+add (Vi,vi)=(14,6) to the solution
+Entering checkForward4() at level 7 with (14,6)
+unsupportedSet: 
+(8,6): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(9,6): marked
+Entering dwo(9)
+Leaving dwo(9): false
+
+(13,6): 
+(15,6): 
+(19,6): 
+(20,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 8
+selected var 13
+add (Vi,vi)=(13,1) to the solution
+Entering checkForward4() at level 8 with (13,1)
+unsupportedSet: 
+(7,1): marked
+Entering dwo(7)
+Leaving dwo(7): false
+
+(8,1): marked
+Entering dwo(8)
+Leaving dwo(8): false
+
+(12,1): 
+(14,1): 
+(18,1): 
+(19,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 9
+selected var 12
+add (Vi,vi)=(12,11) to the solution
+Entering checkForward4() at level 9 with (12,11)
+unsupportedSet: 
+(6,11): 
+(7,11): marked
+Entering dwo(7)
+Leaving dwo(7): false
+
+(11,11): 
+(13,11): 
+(17,11): 
+(18,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 10
+selected var 11
+add (Vi,vi)=(11,6) to the solution
+Entering checkForward4() at level 10 with (11,6)
+unsupportedSet: 
+(5,6): marked
+Entering dwo(5)
+Leaving dwo(5): false
+
+(6,6): 
+(12,6): 
+(16,6): 
+(17,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 11
+selected var 10
+add (Vi,vi)=(10,6) to the solution
+Entering checkForward4() at level 11 with (10,6)
+unsupportedSet: 
+(4,6): 
+(9,6): 
+(15,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 12
+selected var 9
+add (Vi,vi)=(9,1) to the solution
+Entering checkForward4() at level 12 with (9,1)
+unsupportedSet: 
+(3,1): marked
+Entering dwo(3)
+Leaving dwo(3): false
+
+(4,1): marked
+Entering dwo(4)
+Leaving dwo(4): false
+
+(8,1): 
+(10,1): 
+(14,1): 
+(15,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 13
+selected var 8
+add (Vi,vi)=(8,11) to the solution
+Entering checkForward4() at level 13 with (8,11)
+unsupportedSet: 
+(2,11): marked
+Entering dwo(2)
+Leaving dwo(2): false
+
+(3,11): marked
+Entering dwo(3)
+Leaving dwo(3): false
+
+(7,11): 
+(9,11): 
+(13,11): 
+(14,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 14
+selected var 7
+add (Vi,vi)=(7,6) to the solution
+Entering checkForward4() at level 14 with (7,6)
+unsupportedSet: 
+(1,6): 
+(2,6): marked
+Entering dwo(2)
+Leaving dwo(2): false
+
+(6,6): 
+(8,6): 
+(12,6): 
+(13,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 15
+selected var 6
+add (Vi,vi)=(6,1) to the solution
+Entering checkForward4() at level 15 with (6,1)
+unsupportedSet: 
+(0,1): marked
+Entering dwo(0)
+Leaving dwo(0): false
+
+(1,1): marked
+Entering dwo(1)
+Leaving dwo(1): false
+
+(5,1): marked
+Entering dwo(5)
+Leaving dwo(5): false
+
+(7,1): 
+(11,1): 
+(12,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 16
+selected var 5
+add (Vi,vi)=(5,11) to the solution
+Entering checkForward4() at level 16 with (5,11)
+unsupportedSet: 
+(0,11): marked
+Entering dwo(0)
+Leaving dwo(0): false
+
+(6,11): 
+(11,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 17
+selected var 4
+add (Vi,vi)=(4,11) to the solution
+Entering checkForward4() at level 17 with (4,11)
+unsupportedSet: 
+(3,11): 
+(9,11): 
+(10,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 18
+selected var 3
+add (Vi,vi)=(3,6) to the solution
+Entering checkForward4() at level 18 with (3,6)
+unsupportedSet: 
+(2,6): 
+(4,6): 
+(8,6): 
+(9,6): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 19
+selected var 2
+add (Vi,vi)=(2,1) to the solution
+Entering checkForward4() at level 19 with (2,1)
+unsupportedSet: 
+(1,1): 
+(3,1): 
+(7,1): 
+(8,1): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 20
+selected var 1
+add (Vi,vi)=(1,11) to the solution
+Entering checkForward4() at level 20 with (1,11)
+unsupportedSet: 
+(0,11): 
+(2,11): 
+(6,11): 
+(7,11): 
+Leaving checkForward4(): true
+Entering searchFC4() at level 21
+selected var 0
+add (Vi,vi)=(0,6) to the solution
+Leaving searchFC4() at level 21: last var
+Leaving searchFC4() at level 20: true
+Leaving searchFC4() at level 19: true
+Leaving searchFC4() at level 18: true
+Leaving searchFC4() at level 17: true
+Leaving searchFC4() at level 16: true
+Leaving searchFC4() at level 15: true
+Leaving searchFC4() at level 14: true
+Leaving searchFC4() at level 13: true
+Leaving searchFC4() at level 12: true
+Leaving searchFC4() at level 11: true
+Leaving searchFC4() at level 10: true
+Leaving searchFC4() at level 9: true
+Leaving searchFC4() at level 8: true
+Leaving searchFC4() at level 7: true
+Leaving searchFC4() at level 6: true
+Leaving searchFC4() at level 5: true
+Leaving searchFC4() at level 4: true
+Leaving searchFC4() at level 3: true
+Leaving searchFC4() at level 2: true
+Leaving searchFC4() at level 1: true
+Entering printSolution()
+AP 0: 6
+AP 1: 11
+AP 2: 1
+AP 3: 6
+AP 4: 11
+AP 5: 11
+AP 6: 1
+AP 7: 6
+AP 8: 11
+AP 9: 1
+AP 10: 6
+AP 11: 6
+AP 12: 11
+AP 13: 1
+AP 14: 6
+AP 15: 11
+AP 16: 11
+AP 17: 1
+AP 18: 6
+AP 19: 11
+AP 20: 1
+Leaving printSolution()
