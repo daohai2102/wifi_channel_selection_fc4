@@ -4,12 +4,12 @@ CC = g++
 # compiler flags:
 #  -g    adds debugging information to the executable file
 #  -Wall turns on most, but not all, compiler warnings
-CFLAGS  = -Wall -std=c++11 -g
+CFLAGS  = -Wall -std=c++11 -g -lssh
 
 # the list of header files
 #INCL   = server.h
 #the list of source files
-SRC = cs.cc
+SRC = cs.cc SshSession.cc
 #OBJ = $(SRC:.cpp=.o)
 
 # the build target executable:
@@ -17,7 +17,7 @@ TARGET = cs
 
 $(TARGET): $(OBJ)
 #	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRC)
+	$(CC) -o $(TARGET) $(SRC) $(CFLAGS) 
 
 $(OBJ): $(INCL)
 

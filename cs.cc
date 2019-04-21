@@ -9,6 +9,9 @@
 #include <list>
 #include <algorithm>
 #include <random>
+#include <cstring>
+#include <sstream>
+#include "SshSession.h"
 
 using namespace std;
 
@@ -21,8 +24,10 @@ using namespace std;
 #define MIN_ENV_UTIL 0.1
 #define MIN_TOTAL_UTIL 0.3
 
-const string topoFile = "topo1.txt";
-const string currentChannelFile = "channels1.txt";
+const string topoFile = "topo.txt";
+//const string utilFile = "util.txt";
+const string apCredentialFile = "ap_credential.csv";
+const string statFilename = "statistic.csv";
 
 struct VarValuePair{
 	int varIndex;							//variable index
@@ -40,7 +45,7 @@ struct ChannelInfo{
 	ChannelUtilization util;
 };
 
-typedef unordered_map<int, ChannelInfo> Domain;
+typedef unordered_map<int, ChannelInfo> Domain; //<channelNo, ChannelInfo>
 
 
 class ChannelSwitching{
@@ -49,13 +54,15 @@ private:
 	int **adjacent;			//specify if an AP is adjacent to the others
 	vector<int> currentChannel;				//current channel of each AP
 	vector<Domain> domain;
+	vector<SshSession> sshSessions;
 	unsigned int nAP;								//number of APs
 public:
 	ChannelSwitching();
 	~ChannelSwitching();
 	void readTopoFromFile(const string filename);
 	void readCurrentChannelFromFile(const string filename);
-	void prepareData();
+	void readUtilizationFromFile(const string filename);
+	void prepareData(string topoFile, string currentChannelFile, string utilFile);
 	void nodeConsistency();
 	void arcConsistency();
 	bool dwo(int varIndex);									//domain wipe out
@@ -67,17 +74,31 @@ public:
 	void printChannelInfo();
 	void printCurrentChannel();
 	void printSolution();
+	void readSshInfo(const string filename);
+	void importDataFromAp();
+	void switchChannel();
+	void exportStatistic();
 };
 
-int main(){
+int main(int argc, char** argv){
 	cout << "Entering main()\n";
+
+	//string topoFile(argv[1], argv[1] + strlen(argv[1]));
+	//string currentChannelFile(argv[2], argv[2] + strlen(argv[2]));
+	//string utilFile(argv[3], argv[3] + strlen(argv[3]));
+
+	string currentChannelFile, utilFile;
+
 	ChannelSwitching cs;
+	cs.prepareData(topoFile, currentChannelFile, utilFile);
 
 	cs.printCurrentChannel();
 	cs.printChannelInfo();
 
 	if (cs.fc4()){
 		cs.printSolution();
+		cs.switchChannel();
+		cs.exportStatistic();
 	}else{
 		cout << "There is no solution\n";
 	}
@@ -86,7 +107,7 @@ int main(){
 
 ChannelSwitching::ChannelSwitching(){
 	cout << "Entering ChannelSwitching::ChannelSwitching()\n";
-	prepareData();
+	//prepareData();
 	cout << "Leaving ChannelSwitching::ChannelSwitching()\n";
 }
 
@@ -298,34 +319,65 @@ void ChannelSwitching::readCurrentChannelFromFile(const string filename){
 	cout << "Leaving ChannelSwitching::readCurrentChannelFromFile()\n";
 }
 
-void ChannelSwitching::prepareData(){
+void ChannelSwitching::prepareData(string topoFile, string currentChannelFile, string utilFile){
 	cout << "Entering ChannelSwitching::prepareData()\n";
-	srand(time(NULL));
 	readTopoFromFile(topoFile);
-	readCurrentChannelFromFile(currentChannelFile);
-	solution.clear();
-	std::default_random_engine totalGenerator;
-	std::uniform_real_distribution<double> totalDistribution(MIN_TOTAL_UTIL, MAX_UTIL);
+	readSshInfo(apCredentialFile);
+
 	for (unsigned int i = 0; i < nAP; i++){
-		domain.push_back(Domain());
-		for (int j = 1; j < 12; j += 5){
-			ChannelInfo chanInfo;
-			chanInfo.mark = NOMARK;
-			/* generate channel utilization randomly
-			 * total_util:	[0.3, MAX_UTIL] => distribution: uniform
-			 * env_util:	[0.1, total_util] => distribution: uniform*/
-			float totalUtil = totalDistribution(totalGenerator);
-			chanInfo.util.totalUtil = totalUtil;
+		sshSessions[i].connectSsh();
+	}
 
-			//std::default_random_engine envGenerator;
-			//std::uniform_real_distribution<double> envDistribution(MIN_ENV_UTIL, totalUtil);
-			//chanInfo.util.envUtil = envDistribution(envGenerator);
-			chanInfo.util.envUtil = MIN_ENV_UTIL + rand()/((float)RAND_MAX/(totalUtil - MIN_ENV_UTIL));
+	importDataFromAp();
 
-			domain[i].insert(domain[i].end(), pair<int, ChannelInfo>(j, chanInfo));
+	//readCurrentChannelFromFile(currentChannelFile);
+	//readUtilizationFromFile(utilFile);
+	//srand(time(NULL));
+	//solution.clear();
+	//std::default_random_engine totalGenerator;
+	//std::uniform_real_distribution<double> totalDistribution(MIN_TOTAL_UTIL, MAX_UTIL);
+	//for (unsigned int i = 0; i < nAP; i++){
+	//	domain.push_back(Domain());
+	//	for (int j = 1; j < 12; j += 5){
+	//		ChannelInfo chanInfo;
+	//		chanInfo.mark = NOMARK;
+	//		/* generate channel utilization randomly
+	//		 * total_util:	[0.3, MAX_UTIL] => distribution: uniform
+	//		 * env_util:	[0.1, total_util] => distribution: uniform*/
+	//		float totalUtil = totalDistribution(totalGenerator);
+	//		chanInfo.util.totalUtil = totalUtil;
+
+	//		//std::default_random_engine envGenerator;
+	//		//std::uniform_real_distribution<double> envDistribution(MIN_ENV_UTIL, totalUtil);
+	//		//chanInfo.util.envUtil = envDistribution(envGenerator);
+	//		chanInfo.util.envUtil = MIN_ENV_UTIL + rand()/((float)RAND_MAX/(totalUtil - MIN_ENV_UTIL));
+
+	//		domain[i].insert(domain[i].end(), pair<int, ChannelInfo>(j, chanInfo));
+	//	}
+	//}
+	cout << "Leaving ChannelSwitching::prepareData()\n";
+}
+
+void ChannelSwitching::readUtilizationFromFile(const string filename){
+	cout << "Entering ChannelSwitching::readUtilizationFromFile()\n";
+	
+	ifstream myfile(filename);
+
+	if (myfile.is_open()){
+		for (unsigned int i = 0; i < nAP; i++){
+			domain.push_back(Domain());
+			for (int j = 1; j < 12; j+=5){
+				ChannelInfo chanInfo;
+				chanInfo.mark = NOMARK;
+				myfile >> chanInfo.util.envUtil >> chanInfo.util.totalUtil;
+				domain[i].insert(domain[i].end(), pair<int, ChannelInfo>(j, chanInfo));
+			}
 		}
 	}
-	cout << "Leaving ChannelSwitching::prepareData()\n";
+
+	myfile.close();
+
+	cout << "Leaving ChannelSwitching::readUtilizationFromFile()\n";
 }
 
 void ChannelSwitching::printTopo(){
@@ -389,4 +441,128 @@ void ChannelSwitching::nodeConsistency(){
 		}
 	}
 	cout << "Leaving nodeConsistency()\n";
+}
+
+void ChannelSwitching::readSshInfo(const string filename){
+	cout << "Entering ChannelSwitching::readSshInfo()\n";
+
+	ifstream myfile(filename);
+	if (myfile.is_open()){
+		string line;
+		getline(myfile, line);
+		for (unsigned int i = 0; i < nAP; i++){
+			getline(myfile, line);
+			stringstream ss(line);
+			string userName, address, portstr, keyfile;
+			getline(ss, userName, ',');
+			getline(ss, address, ',');
+			getline(ss, portstr, ',');
+			getline(ss, keyfile, ',');
+			int port = stoi(portstr, NULL, 10);
+			SshSession sshAp;
+			sshAp.setUserName(userName.c_str())
+				 .setAddress(address.c_str())
+				 .setPort(port)
+				 .setPrivateKeyFile(keyfile.c_str());
+			sshSessions.push_back(sshAp);
+		}
+	}
+	cout << "Leaving ChannelSwitching::readSshInfo()\n";
+}
+
+void ChannelSwitching::importDataFromAp(){
+	cout << "Entering ChannelSwitching::importDataFromAp()\n";
+
+	ssh_channel *sshChannels = new ssh_channel[nAP];
+
+	for (unsigned int i = 0; i < nAP; i++){
+		sshChannels[i] = sshSessions[i].runCommandAsync("/root/get_chan_util");
+	}
+
+	for (unsigned int i = 0; i < nAP; i++){
+		string result = sshSessions[i].getChannelBuffer(sshChannels[i]);
+		stringstream ss(result);
+		int chan;
+		ss >> chan;
+		currentChannel.push_back(chan);
+
+		domain.push_back(Domain());
+		for (int j = 1; j < 12; j+=5){
+			ChannelInfo chanInfo;
+			chanInfo.mark = NOMARK;
+			ss >> chanInfo.util.envUtil >> chanInfo.util.totalUtil;
+			domain[i].insert(domain[i].end(), pair<int, ChannelInfo>(j, chanInfo));
+		}
+	}
+
+	delete[] sshChannels;
+
+	cout << "Leaving ChannelSwitching::importDataFromAp()\n";
+}
+
+void ChannelSwitching::switchChannel(){
+	cout << "Entering ChannelSwitching::switchChannel()\n";
+
+	for (auto it = solution.begin(); it != solution.end(); it++){
+		int ap = it->first;
+		int chan = it->second;
+		stringstream cmd;
+		cmd << "/root/switch_channel" << chan;
+		sshSessions[ap].runCommand(cmd.str().c_str());
+	}
+
+	cout << "Entering ChannelSwitching::switchChannel()\n";
+}
+
+void ChannelSwitching::exportStatistic(){
+	cout << "Entering ChannelSwitching::exportStatistic()\n";
+
+	bool fileExisted = false;
+	if (FILE *file = fopen(statFilename.c_str(), "r")){
+		fclose(file);
+		fileExisted = true;
+	}
+
+	ofstream statFile;
+	statFile.open(statFilename, ofstream::app);
+	if (!statFile.is_open()){
+		cerr << "Cannot open statistic file\n";
+		exit(1);
+	}
+
+	if (!fileExisted){
+		statFile << "ap_id,old_channel,old_avail,old_env,old_bss,old_total,new_channel,new_avail,new_env,new_bss,new_total\n";
+	}
+	
+	ssh_channel *sshChannels = new ssh_channel[nAP];
+
+	for (unsigned int i = 0; i < nAP; i++){
+		sshChannels[i] = sshSessions[i].runCommandAsync("/root/get_current_chan_util");
+	}
+
+	for (unsigned int i = 0; i < nAP; i++){
+		string result = sshSessions[i].getChannelBuffer(sshChannels[i]);
+		stringstream ss(result);
+
+		int oldChannel = currentChannel[i];
+		int newChannel;
+		ss >> newChannel;
+
+		ChannelUtilization oldUtil, newUtil;
+
+		oldUtil = domain[i][oldChannel].util;
+		ss >> newUtil.envUtil >> newUtil.totalUtil;
+
+		float oldAvail = LIMIT_UTIL - oldUtil.envUtil;
+		float newAvail = LIMIT_UTIL - newUtil.envUtil;
+		float oldBss = oldUtil.totalUtil - oldUtil.envUtil;
+		float newBss = newUtil.totalUtil - newUtil.envUtil;
+
+		statFile << i << ','
+				 << oldChannel << ',' << oldAvail << ',' << oldUtil.envUtil << ',' << oldBss << ',' << oldUtil.totalUtil << ','
+				 << newChannel << ',' << newAvail << ',' << newUtil.envUtil << ',' << newBss << ',' << newUtil.totalUtil << '\n';
+	}
+	
+	statFile.close();
+	delete[] sshChannels;
 }
