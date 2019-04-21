@@ -54,7 +54,7 @@ private:
 	int **adjacent;			//specify if an AP is adjacent to the others
 	vector<int> currentChannel;				//current channel of each AP
 	vector<Domain> domain;
-	vector<SshSession> sshSessions;
+	SshSession *sshSessions;
 	unsigned int nAP;								//number of APs
 public:
 	ChannelSwitching();
@@ -107,15 +107,21 @@ int main(int argc, char** argv){
 
 ChannelSwitching::ChannelSwitching(){
 	cout << "Entering ChannelSwitching::ChannelSwitching()\n";
+	adjacent = NULL;
+	sshSessions = NULL;
 	//prepareData();
 	cout << "Leaving ChannelSwitching::ChannelSwitching()\n";
 }
 
 ChannelSwitching::~ChannelSwitching(){
-	for (unsigned int i = 0; i < nAP; i ++){
-		delete[] adjacent[i];
+	if (adjacent){
+		for (unsigned int i = 0; i < nAP; i ++){
+			delete[] adjacent[i];
+		}
+		delete[] adjacent;
 	}
-	delete[] adjacent;
+	if (sshSessions)
+		delete[] sshSessions;
 }
 
 /** 
@@ -322,6 +328,7 @@ void ChannelSwitching::readCurrentChannelFromFile(const string filename){
 void ChannelSwitching::prepareData(string topoFile, string currentChannelFile, string utilFile){
 	cout << "Entering ChannelSwitching::prepareData()\n";
 	readTopoFromFile(topoFile);
+	sshSessions = new SshSession[nAP];
 	readSshInfo(apCredentialFile);
 
 	for (unsigned int i = 0; i < nAP; i++){
@@ -459,12 +466,10 @@ void ChannelSwitching::readSshInfo(const string filename){
 			getline(ss, portstr, ',');
 			getline(ss, keyfile, ',');
 			int port = stoi(portstr, NULL, 10);
-			SshSession sshAp;
-			sshAp.setUserName(userName.c_str())
-				 .setAddress(address.c_str())
-				 .setPort(port)
-				 .setPrivateKeyFile(keyfile.c_str());
-			sshSessions.push_back(sshAp);
+			sshSessions[i].setUserName(userName.c_str())
+						  .setAddress(address.c_str())
+						  .setPort(port)
+						  .setPrivateKeyFile(keyfile.c_str());
 		}
 	}
 	cout << "Leaving ChannelSwitching::readSshInfo()\n";
