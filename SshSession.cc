@@ -51,9 +51,21 @@ SshSession& SshSession::setVerbosity(int verbo){
 }
 
 SshSession& SshSession::connectSsh(){
+	std::cout << "Entering SshSession::connectSsh()\n";
 	ssh_options_set(mySshSession, SSH_OPTIONS_HOST, address);
 	ssh_options_set(mySshSession, SSH_OPTIONS_PORT, &port);
 	ssh_options_set(mySshSession, SSH_OPTIONS_USER, userName);
+	
+	bool fileExisted = false;
+	if (FILE *file = fopen(privateKeyFile, "r")){
+		fclose(file);
+		fileExisted = true;
+	}
+	
+	if (!fileExisted){
+		std::cout << "key file not found: " << privateKeyFile << '\n';
+		exit(1);
+	}
 
 	int rc = ssh_connect(mySshSession);
 	if (rc != SSH_OK){
@@ -66,6 +78,7 @@ SshSession& SshSession::connectSsh(){
 		throw SshUserAuthException(ssh_get_error(mySshSession));
 	}
 
+	std::cout << "Leaving SshSession::connectSsh()\n";
 	return *this;
 }
 

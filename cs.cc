@@ -512,8 +512,9 @@ void ChannelSwitching::switchChannel(){
 		int ap = it->first;
 		int chan = it->second;
 		stringstream cmd;
-		cmd << "/root/switch_channel" << chan;
-		sshSessions[ap].runCommand(cmd.str().c_str());
+		cmd << "/root/switch_channel " << chan;
+		string result = sshSessions[ap].runCommand(cmd.str().c_str());
+		cout << "channel switching result: " << result << '\n';
 	}
 
 	cout << "Entering ChannelSwitching::switchChannel()\n";
@@ -570,4 +571,6 @@ void ChannelSwitching::exportStatistic(){
 	
 	statFile.close();
 	delete[] sshChannels;
+	
+	cout << "Leaving ChannelSwitching::exportStatistic()\n";
 }
