@@ -56,6 +56,7 @@ private:
 	vector<Domain> domain;
 	SshSession *sshSessions;
 	unsigned int nAP;								//number of APs
+	long *oldThroughput;
 public:
 	ChannelSwitching();
 	~ChannelSwitching();
@@ -122,6 +123,9 @@ ChannelSwitching::~ChannelSwitching(){
 	}
 	if (sshSessions)
 		delete[] sshSessions;
+	if (oldThroughput){
+		delete[] oldThroughput;
+	}
 }
 
 /** 
@@ -329,6 +333,7 @@ void ChannelSwitching::prepareData(string topoFile, string currentChannelFile, s
 	cout << "Entering ChannelSwitching::prepareData()\n";
 	readTopoFromFile(topoFile);
 	sshSessions = new SshSession[nAP];
+	oldThroughput = new long[nAP];
 	readSshInfo(apCredentialFile);
 
 	for (unsigned int i = 0; i < nAP; i++){
@@ -478,15 +483,18 @@ void ChannelSwitching::readSshInfo(const string filename){
 void ChannelSwitching::importDataFromAp(){
 	cout << "Entering ChannelSwitching::importDataFromAp()\n";
 
-	ssh_channel *sshChannels = new ssh_channel[nAP];
+	ssh_channel *utilChannels= new ssh_channel[nAP];
+	ssh_channel *throughputChannels = new ssh_channel[nAP];
 
 	for (unsigned int i = 0; i < nAP; i++){
-		sshChannels[i] = sshSessions[i].runCommandAsync("/root/get_chan_util");
+		utilChannels[i] = sshSessions[i].runCommandAsync("/root/get_chan_util");
+		throughputChannels[i] = sshSessions[i].runCommandAsync("/root/get_throughput");
 	}
 
 	for (unsigned int i = 0; i < nAP; i++){
-		string result = sshSessions[i].getChannelBuffer(sshChannels[i]);
-		stringstream ss(result);
+		/* utilization data */
+		string utilResult = sshSessions[i].getChannelBuffer(utilChannels[i]);
+		stringstream ss(utilResult);
 		int chan;
 		ss >> chan;
 		currentChannel.push_back(chan);
@@ -498,9 +506,14 @@ void ChannelSwitching::importDataFromAp(){
 			ss >> chanInfo.util.envUtil >> chanInfo.util.totalUtil;
 			domain[i].insert(domain[i].end(), pair<int, ChannelInfo>(j, chanInfo));
 		}
+
+		/* throughput data */
+		string throughput = sshSessions[i].getChannelBuffer(throughputChannels[i]);
+		oldThroughput[i] = stoi(throughput, NULL, 10);
 	}
 
-	delete[] sshChannels;
+	delete[] utilChannels;
+	delete[] throughputChannels;
 
 	cout << "Leaving ChannelSwitching::importDataFromAp()\n";
 }
@@ -537,17 +550,19 @@ void ChannelSwitching::exportStatistic(){
 	}
 
 	if (!fileExisted){
-		statFile << "ap_id,old_channel,old_avail,old_env,old_bss,old_total,new_channel,new_avail,new_env,new_bss,new_total\n";
+		statFile << "ap_id,old_channel,old_avail,old_env,old_bss,old_total,old_throughput,new_channel,new_avail,new_env,new_bss,new_total,new_throughput\n";
 	}
 	
-	ssh_channel *sshChannels = new ssh_channel[nAP];
+	ssh_channel *utilChannels = new ssh_channel[nAP];
+	ssh_channel *throughputChannels = new ssh_channel[nAP];
 
 	for (unsigned int i = 0; i < nAP; i++){
-		sshChannels[i] = sshSessions[i].runCommandAsync("/root/get_current_chan_util");
+		utilChannels[i] = sshSessions[i].runCommandAsync("/root/get_current_chan_util");
+		throughputChannels[i] = sshSessions[i].runCommandAsync("/root/get_throughput");
 	}
 
 	for (unsigned int i = 0; i < nAP; i++){
-		string result = sshSessions[i].getChannelBuffer(sshChannels[i]);
+		string result = sshSessions[i].getChannelBuffer(utilChannels[i]);
 		stringstream ss(result);
 
 		int oldChannel = currentChannel[i];
@@ -564,13 +579,17 @@ void ChannelSwitching::exportStatistic(){
 		float oldBss = oldUtil.totalUtil - oldUtil.envUtil;
 		float newBss = newUtil.totalUtil - newUtil.envUtil;
 
+		string throughput = sshSessions[i].getChannelBuffer(throughputChannels[i]);
+		long newThroughput = stoi(throughput, NULL, 10);
+
 		statFile << i << ','
-				 << oldChannel << ',' << oldAvail << ',' << oldUtil.envUtil << ',' << oldBss << ',' << oldUtil.totalUtil << ','
-				 << newChannel << ',' << newAvail << ',' << newUtil.envUtil << ',' << newBss << ',' << newUtil.totalUtil << '\n';
+				 << oldChannel << ',' << oldAvail << ',' << oldUtil.envUtil << ',' << oldBss << ',' << oldUtil.totalUtil << ',' << oldThroughput[i] << ','
+				 << newChannel << ',' << newAvail << ',' << newUtil.envUtil << ',' << newBss << ',' << newUtil.totalUtil << ',' << newThroughput << '\n';
 	}
 	
 	statFile.close();
-	delete[] sshChannels;
+	delete[] utilChannels;
+	delete[] throughputChannels;
 	
 	cout << "Leaving ChannelSwitching::exportStatistic()\n";
 }
